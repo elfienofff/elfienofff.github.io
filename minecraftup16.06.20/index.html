@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Overworld</title>
+    <style>
+        .carousel{
+            height:600px;
+        }
+        body{
+            background-image: url(bg.jpg);
+            font-family: 'Press Start 2P', cursive;
+        }
+        .carousel img{
+          height:600px
+        }
+        .last-row{
+          padding-bottom: 2rem;
+        }
+        footer{
+          background-color: rgb(rgb(173, 67, 25), green, blue);
+        }
+        .first{
+          padding-top: 2rem;
+        }
+        div{
+          color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expander="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a href="#" class="nav-link">Overworld</a>
+                </li>
+                <li class="nav-item ">
+                    <a href="nether.html" class="nav-link">Nether</a>
+                </li>
+                <li class="nav-item ">
+                    <a href="ender.html" class="nav-link">The Ender</a>
+                </li>
+                <li class="nav-item ">
+                    <a href="dungeons.html" class="nav-link">Dungeons</a>
+                </li>
+            </ul>
+            
+        </div>
+            <a href="#" class="navbar-brand justify-content-start">
+               <img src="logo.png" alt="" height="50px"> 
+            </a>
+    </nav>
+    <div id="carouselExampleCaptions" class="carousel carousel-fade slide" data-ride="carousel">
+        
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner ">
+          <div class="carousel-item active " data-interval="false">
+            <img src="overworldnew.jpg" class="d-block w-100 overworld" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overworld</h5>
+              <p>Изначальный мир, где Bы появляетесь в начале игры</p>
+            </div>
+          </div>
+          <div class="carousel-item " data-interval="false">
+            <img src="netherr.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Nether</h5>
+              <p>Адский мир, в который Вы можете попасть через специальный портал</p>
+            </div>
+          </div>
+          <div class="carousel-item " data-interval="false">
+            <img src="enderr.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>The Ender</h5>
+              <p>The Ender - мир, где нужно убить главного босса</p>
+            </div>
+          </div>
+          <div class="carousel-item " data-interval="false">
+            <img src="dungeons.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Minecraft Dungeons</h5>
+              <p>Вторая игра от Mojang, вышедшея на подобии Minecraft</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container first">
+        
+        <div class="row">
+          <div class="col-md-8"><h3>Создание       </h3>Overworld - это единственное измерение, созданное, когда игрок создает новый мир. Другие измерения - The Ender и Nether - не создаются, пока игрок не войдет в соответствующий портал .</div>
+          <div class="col-md-4"><img src="1-1.png" class="img-fluid ph1"  alt=""></div>
+        </div>
+        <div class="row last-row">
+          <div class="col-md-4"><img src="1-2.jpg" alt="" class="img-fluid"></div>
+          <div class="col-md-8"><h3>Биомы</h3> Сверхразрушенный мир делится на биомы разных типов. Тип биома определяет основные характеристики местности внутри него, и почти все они имеют несколько вариаций, которые изменяют эти характеристики для создания более реалистичной местности. </div>
+        </div>
+      </div>
+      <footer>
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-4">nozhkin@s12.pp.ua</div>
+            <div class="col-md-4">+380985388553</div>
+            <div class="col-md-4"><a href="https://www.instagram.com/elfienoff/?hl=uk">Instagram</a></div>
+          </div>
+        </div>
+      </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

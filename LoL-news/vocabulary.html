@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/24e14e3299.js" crossorigin="anonymous"></script>
+    <script src="C:\Users\Andrey\Desktop\ANDREY\JavaScript\4to-to Illi\League-of-Legends-news\search.js"></script>
+    <title>Словарь</title>
+    <script type="text/javascript">
+        var lastResFind=""; // последний удачный результат
+        var copy_page=""; // копия страницы в исходном виде
+        function TrimStr(s) {
+             s = s.replace( /^\s+/g, '');
+          return s.replace( /\s+$/g, '');
+        }
+        function FindOnPage(inputId) {//ищет текст на странице, в параметр передается ID поля для ввода
+          var obj = window.document.getElementById(inputId);
+          var textToFind;
+         
+          if (obj) {
+            textToFind = TrimStr(obj.value);//обрезаем пробелы
+          } else {
+            alert("Введенная фраза не найдена");
+            return;
+          }
+          if (textToFind == "") {
+            alert("Вы ничего не ввели");
+            return;
+          }
+         
+          if(document.body.innerHTML.indexOf(textToFind)=="-1")
+          alert("Ничего не найдено, проверьте правильность ввода!");
+         
+          if(copy_page.length>0)
+                document.body.innerHTML=copy_page;
+          else copy_page=document.body.innerHTML;
+        
+         
+          document.body.innerHTML = document.body.innerHTML.replace(eval("/name="+lastResFind+"/gi")," ");//стираем предыдущие якори для скрола
+          document.body.innerHTML = document.body.innerHTML.replace(eval("/"+textToFind+"/gi"),"<a name="+textToFind+" style='background:red'>"+textToFind+"</a>"); //Заменяем найденный текст ссылками с якорем;
+          lastResFind=textToFind; // сохраняем фразу для поиска, чтобы в дальнейшем по ней стереть все ссылки
+          window.location = '#'+textToFind;//перемещаем скрол к последнему найденному совпадению
+         }
+        </script>
+    <style>
+        .poisk {
+            margin-left: 220px;
+        }
+        
+        .place_for_search {
+            width: 300px;
+            height: 40px;
+        }
+        
+        .button_for_turn_back {
+            width: 50px;
+            height: 40px;
+        }
+        
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        form {
+            position: relative;
+            width: 1308px;
+            margin: 0 auto;
+            height: 52px;
+        }
+        
+        input {
+            height: 52px;
+            width: 0;
+            padding: 0 52px 0 15px;
+            border: none;
+            border-bottom: 2px solid transparent;
+            outline: none;
+            background: transparent;
+            transition: .4s cubic-bezier(0, 0.8, 0, 1);
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 2;
+            color: black;
+        }
+        
+        input:focus {
+            width: 300px;
+            z-index: 1;
+            border-bottom: 2px solid #fff3d6;
+        }
+        
+        button {
+            background: #683B4D;
+            border: none;
+            height: 52px;
+            width: 52px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            border-top-right-radius: 25px;
+        }
+        
+        button:before {
+            content: "\f002";
+            font-family: FontAwesome;
+            font-size: 16px;
+            color: #F9F0DA;
+        }
+        </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <div class="container ">
+            <div class="navbar-header menushka1">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mymenu">
+                    <span class="sr-only">toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a href="#" class="navbar-brand app">Up</a>
+
+            </div>
+            <div class="collapse navbar-collapse menushka2" id="mymenu">
+                <!-- nav body -->
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Новости LoL</a></li>
+                    <li class="nav-item"><a class="nav-link" href="heroes.html">Персонажи</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="#">Словарь</a></li>
+                    <li class="nav-item"><a class="nav-link" href="role.html">Роли</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#">League Helper
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="https://porofessor.gg/ru/">Porofessor.gg</a></li>
+                            <li><a class="dropdown-item" href="https://blitz.gg/lol">Blitz App</a></li>
+                            <li>
+                                <a class="dropdown-item" href="Mobalytics - LoL Overlay.html" ">Mobalytics</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container voc ">
+        <form>
+            <input class="place_for_search" type="text" id="text-to-find" value="" placeholder="Search" autofocus> 
+            <input class="button_for_turn_back" type="button" onclick="javascript: FindOnPage('text-to-find',false); return false;" value=" " title="Отменить поиск">
+            <input class="button_for_search" type="submit" onclick="javascript: FindOnPage('text-to-find',true); return false;" value=" " title="Начать поиск">
+          </form>
+        <h3>A</h3>
+        <p>AD (Attack Damage) – физический урон.</p>
+        <p>AD Carry – герой с большим физическим уроном.</p>
+        <p>AFK (англ. Away From Keyboard) – досл. - не у клавиатуры. Применительно к игрокам, которые во время игры перестают совершать какие-либо действия.</p>
+        <p>All Random – режим Custom Game, где компьютер случайным образом выбирает для каждого игрока героя.</p>
+        <p>AoE (Area of Effect) – эффект по площади. Применительно к заклинаниям или вещам, наносящим урон по площади. AP (Ability Power) – сила заклинания.</p>
+        <p>AP Carry – герой, наносящий много магического урона с заклинаний.</p>
+        <p>Armor – броня. Характеристика, снижающая физический урон по цели.</p>
+
+        <h3>B</h3>
+        <p>B, Back – назад, отходи. Призыв покинуть опасную зону.</p>
+        <p>Backdoor – атака какого нибудь вражеского здания без крипов.</p>
+        <p>Bait – ситуация, в которой один из игроков притворяется «легкой» добычей и провоцирует врага на атаку, зная, что рядом союзники, которые придут ему на помощь.</p>
+        <p>Baron Nashor – Очень важная стратегическая точка. Убийство этого монстра дает каждому игроку команды 300 монет и сильное усиление.</p>
+        <p>BG (Bad Game) – плохая игра.</p>
+        <p>Bind – заклинания, не дающее врагу двигаться, но позволяющее колдовать.</p>
+        <p>Blame – конструктивное обвинение. Применительно к игрокам, которые допустили серьезные ошибки во время игры.</p>
+        <p>Blind Pick – режим Normal Game, в котором все игроки выбирают героев одновременно и не могут видить, каких героев выбрали соперники. Кроме того, в таком режиме у одной и у другой команды могут быть одинаковые герои.</p>
+        <p>Blue Buff (Golem) – синий бафф, нейтральный крип в лесу, после убийства которого, герой игрока получает усиление.</p>
+        <p>Blue Team – синяя команда. Нижняя команда.</p>
+        <p>Bot (Bot Lane) – нижняя линия.</p>
+        <p>BRB (от англ. Be Right Back) – досл. скоро вернусь. Применительно к ситуации, когда игрок собирается телепортироваться на базу и сразу же вернуться.</p>
+        <p>Bruiser – герой способный наносить и выдержать приличный урон и целью которого является убийство вражеских AP или Range AD Carry.</p>
+        <p>BTW (от англ. By The Way) – кроме того, кстати, между прочим.</p>
+        <p>Build – список рун, мастерис, предметов и порядок изучения заклинаний, необходимые для успешной игры за определенного героя</p>
+        <p>Burst – большой мгновенный урон.</p>
+        <p>Bush – куст.</p>
+        <p>Buff – усиление, который получает игрок, убивший определенного нейтрального монстра в лесу.</p>
+
+        <h3>C</h3>
+        <p>Care – досл. - осторожнее.</p>
+        <p>Carry – герои наносящие больше всего урона. Существует два вида AP Carry (маги) и AD Carry (бойцы с физическим уроном)</p>
+        <p>Cast – выпущенное в цель заклинание.</p>
+        <p>CС (Crowd Control) – общее название заклинаний, препятствующих действиям героя.</p>
+        <p>CDR (Cooldown Reduction) – время восстановления заклинаний.</p>
+        <p>Champ (Champion) – герой, персонаж.</p>
+        <p>Chase – погоня за врагом.</p>
+        <p>Creeps – монстры, постоянным потоком идущие по линиям.</p>
+        <p>CS (Creep Stat) – статистика по убитым крипам.</p>
+        <p>Custom Game – режим игры, в котором игроку предлагается самому выбрать карту и режим, а также добавить в игру других игроков или компьютерных ботов.</p>
+        <p>CV (Clairvoyance) - Summoner Spell просвечивающий небольшой участок карты.</p>
+
+        <h3>D</h3>
+        <p>DC (Disconnect) – применительно к игроку покинувшему игру по причине поломки компьютера или неполадок с интернетом.</p>
+        <p>DD (Damage Dealer) – герой, наносящий много урона.</p>
+        <p>Def (Defend)– защита. Призыв защищать Tower, Inhibitor, Nexus, Dragon, Baron Nashor или же какого-либо героя.</p>
+        <p>Disable – заклинание, каким либо образов обезвреживающее вражеского героя.</p>
+        <p>Dive – рывок под вражескую башню с целью убить врага.</p>
+        <p>Draft Pick – режим, в котором каждая из двух команд может забанить до 3-ех героев, а также в этом режиме игроки выбирают себе героев по очереди.</p>
+        <p>Drake – дракон. Стратегическая точка. Убийство данного монстра дает каждому игроку команды 190 монет.</p>
+        <p>Duo – режим Ranked Game, в котором игрок может пригласить друзей. League Points при этом идет в зачет Solo Queue режима.</p>
+
+        <h3>E</h3>
+        <p>E – третье заклинание героя, соответствующее кнопке E на клавиатуре.</p>
+        <p>Early game – время игры длящееся до первой снесенной вышки.</p>
+        <p>Escape – заклинание, позволяющее быстро уйти от опасности.</p>
+
+        <h3>F</h3>
+        <p>Face check - досл. - проверить лицом. Герой идет в непросвеченную область карты, рискуя быть пойманным врагом.</p>
+        <p>Farm – убийство крипов на линии и в лесу. Например: «I farm top», то есть игрок пойдет на верхнюю линию для убийства приличного скопления крипов.</p>
+        <p>FB (First Blood) – первое убийство (первая кровь), за которое дают 400 монет. Так же призыв к тому, чтобы устроить на первых минутах в каком-нибудь месте засаду и попытаться убить неосторожного врага.</p>
+        <p>Fear – страх, заклинание, заставляющее вражеского героя медленно идти в случайном направлении и не позволяющее ему применять какие-либо заклинания.</p>
+        <p>Feed, feeder, fed – ситуация в которой игроки одной команды умирают намного чаще, чем игроки другой. Feeder – конкретный игрок, который очень часто умирает.</p>
+        <p>First Ban – игрок который первый начинает банить. В Solo Queue это игрок с наивысшим Division. В Team Ranked это игрок, чья команда первая создала игру.</p>
+        <p>First Pick – игрок, первым выбирающего героя.</p>
+        <p>Flame – негативные высказывания в адрес игроков.</p>
+        <p>Focus – focus «имя героя», призыв атаковать определенного героя.</p>
+
+        <h3>G</h3>
+        <p>Gank – неожиданный приход на линию еще одного или несколько героев, с целью убить врага. Главная задача лесника.</p>
+        <p>GG (Good Game) – хорошая игра.</p>
+        <p>GJ (Good Job) – хорошая работа.</p>
+        <p>GL & HF (Good Luck and Have Fun) – досл. - удачи и веселого время провождения.</p>
+        <p>Golems – два рядом стоящих лесных крипа, расположенный в нижней части леса у синей команды и в верхней части у фиолетовой.</p>
+
+        <h3>H</h3>
+        <p>Harass – не смертельные атаки, целью которых является снизить здоровье вражеского героя до такой отметки, чтобы в определенный момент, применив все заклинания, его убить. Или же просто «подготовить» противника к приходу
+            своего лесника.</p>
+        <p>Hold – как правило, просьба, обращенная к леснику, чтобы тот постоял на одной из линий, пока ваш герой ходит на базу закупиться. Например: «Hold mid». Досл. - удержание.</p>
+        <p>HP (Health Point) – очки здоровья</p>
+
+        <h3>I</h3>
+        <p>Inc (Incoming) – предупреждение о том, что вражеский герой направляется на какую-то линию. Например: «sion inc bot, care»</p>
+        <p>Inhibitor – строение, разрушение которого открывает доступ к Nexus. Также после его разрушения, по той линии, на которой находился Inhibitor будут идти сильные союзные крипы.</p>
+        <p>Invade - вторгаться. Например: «Go invade their blue buff», что означает «Пойдем на ихний синий бафф».</p>
+        <p>IP (Influence Points) – игровая валюта, которую игрок получает по завершении каждой игры.</p>
+        <p>IP Boost – покупной бонус на аккаунт, дающий удвоение получаемых IP.</p>
+        <p>Item – предмет, вещь.</p>
+        <p>Item Build – набор из 6 вещей.</p>
+
+        <h3>J
+        </h3>
+        <p>Jungle – джунгли, лес. Территория с нейтральными монстрами.</p>
+        <p>Jungler – герой, который большую часть времени проводит в лесу, и совершает оттуда ганки на линии.</p>
+
+        <h3>K</h3>
+        <p>Kite – непрерывное движение, во время которого герой постоянно атакует врага и не дает ему приблизиться.</p>
+        <p>KS (Kill Steal) - досл. - украденное убийство. Так говорят, когда союзник добивает врага, которого мог убить без помощи другой игрок.</p>
+
+        <h3>L</h3>
+        <p>Ladder – игровая статистика, отфильтрованная по рейтингу игроков.</p>
+        <p>Last hit – последний, добивающий, удар по крипу.</p>
+        <p>Last Pick – игрок, выбирающий героя последним.</p>
+        <p>Late game – время игры, когда большинство игроков собрали минимум 4 сильных предмета. Как правило, начинается к минуте 35-40.</p>
+        <p>Leave – выход из игры до ее завершения. Игрока сделавшего это называют Leaver`ом и затем его банят игроки.</p>
+        <p>LoL (League of Legends) – Лига Легенд. Не путать с lol, что обозначает веселое удивление.</p>
+
+        <h3>M</h3>
+        <p>Masteries – странички, на которых можно распределить до 30 очков на таланты, усиливающие характеристики героя.</p>
+        <p>Mid (Mid Lane) – центральная линия.</p>
+        <p>Mid game – время игры, начинающееся после первой разрушенной вышки.</p>
+        <p>MR (Magic Resistance) – магическая защита. Характеристика, снижающая магический урон по цели.</p>
+        <p>MS (Movement Speed) – скорость передвижения.</p>
+
+        <h3>N</h3>
+        <p>Nexus – главное строение. Целью игры является его разрушение.</p>
+        <p>Noob – новичок в игре. Часто употребляется с целью оскорбления плохо играющего игрока.</p>
+        <p>Normal Game – режим игры, не влияющий на рейтинг.</p>
+
+        <h3>O</h3>
+        <p>Off Tank – то же, что и Bruiser.</p>
+        <p>Omw (On My Way) – досл. - в пути. Обычно говорит герой, идущий на ганк. Например, лесник говорит: «omw top».</p>
+        <p>Oom, (Out of Mana) – предупреждение о том, что у героя нет маны.</p>
+        <p>OP (Over Powered) – применительно к очень сильным героям, которые сильнее большинства на каждой стадии игры. Все чаще употребляется вообще ко всему, что как-либо выделяется и усиливает игру.</p>
+
+        <h3>P</h3>
+        <p>Poke – досл. - тыкать. Поук, поукать. То есть наносить единичный урон и отходить. Например, перед началом Team Fight`a Nidalee может закидывать копьями врагов, без риска получить сильный урон в ответ.</p>
+        <p>Premade – 5 игроков, состоящих в одной команде, и знающих друг друга.</p>
+        <p>Procast – несколько одновременно выпущенных в цель заклинаний.</p>
+        <p>Pull – помощь лесника. Первым начать бить синий или красный бафф, чтобы те какое-то время не били лесника.</p>
+        <p>Purple Team – фиолетовая команда. Верхняя команда.</p>
+        <p>Push – пуш, пушить, отпушить. Быстрое убийство крипов на линии, с целью убить вышку врага, защитить свою или просто иметь возможность на некоторое время покинуть свою линию.</p>
+
+        <h3>Q</h3>
+        <p>Q – первое заклинание героя, соответствующее кнопке Q на клавиатуре.</p>
+
+        <h3>R</h3>
+        <p>R – четвертое заклинание героя, соответствующее кнопке R на клавиатуре.</p>
+        <p>Rage – негативный всплеск эмоций, чаще всего вызванный ошибками и смертями команды.</p>
+        <p>Rage Quit – после Rage, бывает так, что игрок не находит в себе сил играть дальше и выходит из игры, становясь Leaver`ом.</p>
+        <p>Ranged Damage Dealer – боец дальнего боя, наносящий физический урон.</p>
+        <p>Ranked Game – режим игры, в котором игрок может поднять или опустить себе League Points. Начать играть в нем можно достигнув 30 уровня.</p>
+        <p>Re – следует после ss\miss\mia, если вражеский герой возвращается на линию.</p>
+        <p>Recall – телепортация на базу.</p>
+        <p>Red Buff (Lizard) – нейтральный монстр в лесу, убийство которого дает бафф.</p>
+        <p>Report – донос на игрока который совершил одно из нежелательных действий, например: AFK, Leave, Flame. Игрок, на которого слишком часто доносили, может быть забанен на какое-то время разработчиками игры и не сможет
+            играть.</p>
+        <p>Resists – общее название защитных характеристик таких как Armor и MR.</p>
+        <p>Root – то же что и Bind.</p>
+        <p>RP (Riot Points) – игровая валюта, приобретаемая за настоящие деньги.</p>
+        <p>Rune – руны, усиливающие характеристики героя. Покупаются в игровом магазине за IP.</p>
+        <p>Rune Page – страница на которой расположены 30 рун.</p>
+
+        <h3>S</h3>
+        <p>Setup - набор из 5 героев, выбранных специально, для определенной, заранее продуманной, стратегии.</p>
+        <p>Silence – Заклинание, которое не дает вражескому герою какое-то время использовать заклинания.</p>
+        <p>Skill – Умение (мастерство) игрока. Например, говорят: Скилловый игрок. Значит, этот игрок хорошо играет.</p>
+        <p>Skill Order – порядок изучения заклинаний.</p>
+        <p>Skillshot – заклинание, действующее в указанном направлении и от которого можно увернуться.</p>
+        <p>Solo Queue – режим Ranked Game, в котором игроку подбирают случайных союзников приблизительно равных ему по дивизиону.</p>
+        <p>Splitpush – push сразу двух или трех линий.</p>
+        <p>Squish – Хлипкий, тонкий. Сквиш, сквишовый. Так говорят о героях, у которых небольшой запас здоровья и резистов.</p>
+        <p>Summoner Spell – заклинания призывателя. Вспомогательные заклинания, которые выбираются перед началом игры.</p>
+        <p>ss\miss\mia – сообщение о том, что вражеский герой покинул линию.</p>
+        <p>Stun – заклинание, после применения которого, вражеский герой некоторое время ничего не может делать.</p>
+        <p>Summoner – призыватель. Собственно – игрок.</p>
+        <p>Support – класс персонажей поддержки. Как правило, стоит на линии вместе с Range AD Carry.</p>
+        <p>Sustain (Sustain Damage) – постоянный дамаг, не зависящий от времени восстановления заклинаний. Примеры: Cassiopeia, Irelia, Trundle и т.д.</p>
+
+        <h3>T</h3>
+        <p>Tank – класс героев, которые покупают сильные предметы на защиту, и имеют заклинания, направленные на защиту союзников или инициацию Team Fight`ов.</p>
+        <p>Team Fight – командное сражение.</p>
+        <p>Team Ranked – режим игры, в котором принимают участие 5, знающих друг друга, игроков.</p>
+        <p>Top (Top Lane) – самая верхняя линия.</p>
+        <p>Tower – вышка, башня. Атакующее врагов с расстояния.</p>
+        <p>TP (Teleport) – Summoner Spell телепортирующий героя в указанную точку.</p>
+        <p>Trap – досл. - ловушка. Траповать, то есть засесть где-либо в кустах для засады.</p>
+        <p>Tribush – тройной куст.</p>
+        <p>Troll - тролль - игрок, специально выбравший плохого для команды героя, собирающий плохие для героя предметы, и творящий бессмысленные действия по ходу игры.</p>
+
+        <h3>U</h3>
+        <p>Ult (Ultimate) – ульта, четвертое заклинание героя. Еще его называют финальным. Как правило, оно обладает каким-либо сильным эффектом и долго восстанавливается.</p>
+
+        <h3>W</h3>
+        <p>W – второе заклинание героя. Соответствует кнопке W на клавиатуре.</p>
+        <p>WP (Well Played) – хорошо сыграли.</p>
+        <p>Wraiths – ведьмы (нейтральные монстры в лесу).</p>
+
+        <h3>X</h3>
+        <p>XP – опыт, получаемый во время игры за убийство крипов и героев, и качающий героя до 18 уровня. Так же опыт, получаемый игроком по завершении игры.</p>
+        <p>XP Boost – бонус на аккаунт, дающий удвоенный опыт после игры.</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js " integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js " integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6 " crossorigin="anonymous "></script>
+</body>
+
+</html>
